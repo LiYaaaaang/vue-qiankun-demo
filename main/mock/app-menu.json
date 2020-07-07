@@ -1,0 +1,53 @@
+{
+    "apps": [{
+            "module": "subapp-job",
+            "defaultRegister": true,
+            "devEntry": "//localhost:1111",
+            "depEntry": "http://ui.mfe.wlui.com.cn/",
+            "routerBase": "/job",
+            "data": [{
+                "id": "101",
+                "authName": "岗位管理",
+                "icon": "icon-user",
+                "children": [{
+                        "id": "110",
+                        "authName": "前端开发",
+                        "url": "/job/front"
+                    },
+                    {
+                        "id": "111",
+                        "authName": "后端开发",
+                        "url": "/job/back"
+                    }
+                ]
+            }]
+        },
+        {
+            "module": "subapp-language",
+            "defaultRegister": false,
+            "devEntry": "//localhost:2222",
+            "depEntry": "http://blog.mfe.wlui.com.cn",
+            "routerBase": "/language",
+            "data": [{
+                "id": "102",
+                "authName": "语言管理",
+                "icon": "icon-tijikongjian",
+                "children": [{
+                        "id": "120",
+                        "authName": "Java",
+                        "url": "/language/java"
+                    },
+                    {
+                        "id": "121",
+                        "authName": "JavaScript",
+                        "url": "/language/javascript"
+                    }
+                ]
+            }]
+        }
+    ],
+    "meta": {
+        "msg": "获取成功",
+        "status": 200
+    }
+}
