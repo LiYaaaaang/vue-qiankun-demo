@@ -12,6 +12,10 @@ import appStore from "./utils/app-store";
  */
 import routeMatch from "./router/routes-match";
 
+import {
+    initDynamicRoutes
+} from './router/index'
+
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 let router = null;
 let instance = null;
@@ -28,7 +32,7 @@ const lifeCycle = () => {
          * @description 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等
          */
         async bootstrap(props) {
-            console.log('props:', props)
+            // console.log('props:', props)
             /* props.emits.forEach(i => {
               Vue.prototype[`$${i.name}`] = i;
             }); */
@@ -40,6 +44,8 @@ const lifeCycle = () => {
          */
         async mount(props) {
             console.log('props:', props)
+            // 动态添加路由
+            initDynamicRoutes()
             // 注册应用间通信
             appStore(props);
             // 注册微应用实例化函数
@@ -59,7 +65,7 @@ const lifeCycle = () => {
          * @description 可选生命周期钩子，仅使用 loadMicroApp 方式手动加载微应用时生效
          */
         async update(props) {
-            console.log("update props", props);
+            // console.log("update props", props);
         }
     };
 };

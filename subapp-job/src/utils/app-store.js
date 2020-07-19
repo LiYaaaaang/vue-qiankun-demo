@@ -4,7 +4,6 @@ import store from "../store/index";
  * @name 声明一个常量准备将props内的部分内容储存起来
  */
 const STORE = {};
-
 /**
  * @name 启动qiankun应用间通信机制
  * @param {Object} props 官方通信函数
@@ -18,9 +17,10 @@ const appStore = props => {
   props.onGlobalStateChange(
     (state, prev) => {
       console.log(`[onGlobalStateChange - ${props.name}]:`, state, prev)
-      store.dispatch('setAppMsg', state.msg)
+      store.dispatch('setAppCurrentMsg', state.msg)
+      store.dispatch('setAppPrevMsg', prev.msg)
     },
-    // true
+    true
   );
   /**
    * @name 改变并全局广播新消息
@@ -33,8 +33,8 @@ const appStore = props => {
   /**
    * @name 将你需要的数据存起来，供下面setState方法使用
    */
-  STORE.setGlobalState = props.setGlobalState;
   STORE.name = props.name;
+  STORE.setGlobalState = props.setGlobalState;
 };
 
 /**

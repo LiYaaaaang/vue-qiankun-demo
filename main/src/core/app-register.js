@@ -35,7 +35,7 @@ const appContainer = "#subapp-viewport";
  * @param {Array} list 应用注册表信息
  */
 const qianKunStart = (list) => {
-    console.log(list)
+    // console.log(list)
     /**
      * @name 处理子应用注册表数据
      */
@@ -44,17 +44,17 @@ const qianKunStart = (list) => {
     let isDev = process.env.NODE_ENV === 'development'; // 根据开发环境|线上环境加载不同entry
     list.forEach(i => {
         apps.push({
-            name: i.module,
-            entry: isDev ? i.devEntry : i.depEntry,
-            container: appContainer,
-            activeRule: i.routerBase,
-            props: {
+            name: i.module, // 子应用app name
+            entry: isDev ? i.devEntry : i.depEntry, // 子应用的入口地址
+            container: appContainer, // 挂载子应用内容的dom节点
+            activeRule: i.routerBase, // 子应用的路由前缀
+            props: { //主项目传递给子项目的数据
                 ...props,
                 routes: i.data || [],
-                routerBase: i.routerBase
+                routerBase: i.routerBase,
             }
         })
-        console.log(apps)
+        // console.log(apps)
         if (i.defaultRegister) defaultApp = i.routerBase;
     });
     /**

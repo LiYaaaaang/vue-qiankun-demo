@@ -12,12 +12,24 @@
                 "children": [{
                         "id": "110",
                         "authName": "前端开发",
-                        "url": "/job/front"
+                        "url": "/job/front",
+                        "rights": [
+                            "view",
+                            "edit",
+                            "add",
+                            "delete"
+                        ]
                     },
                     {
                         "id": "111",
                         "authName": "后端开发",
-                        "url": "/job/back"
+                        "url": "/job/back",
+                        "rights": [
+                            "view",
+                            "edit",
+                            "add",
+                            "delete"
+                        ]
                     }
                 ]
             }]
@@ -35,12 +47,24 @@
                 "children": [{
                         "id": "120",
                         "authName": "Java",
-                        "url": "/language/java"
+                        "url": "/language/java",
+                        "rights": [
+                            "view",
+                            "edit",
+                            "add",
+                            "delete"
+                        ]
                     },
                     {
                         "id": "121",
                         "authName": "JavaScript",
-                        "url": "/language/javascript"
+                        "url": "/language/javascript",
+                        "rights": [
+                            "view",
+                            "edit",
+                            "add",
+                            "delete"
+                        ]
                     }
                 ]
             }]

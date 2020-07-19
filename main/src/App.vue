@@ -42,7 +42,7 @@ export default {
 			return this.$store.getters.userInfo.username;
 		},
 		subappMsg() {
-			return this.$store.getters.appMsg;
+			return this.$store.getters.appCurrentMsg;
 		},
 	},
 	methods: {

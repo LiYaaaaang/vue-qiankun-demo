@@ -1,16 +1,23 @@
 import Vue from 'vue';
 import VueRouter from "vue-router";
 import App from "./App.vue";
-import store from './store';
+import store from './store/index';
 import selfRoutes from "./router/index";
 /**
  * @name 导入官方通信方法
  */
 import appStore from "./utils/app-store";
+
 /**
  * @name 导入自定义路由匹配方法
  */
 import routeMatch from "./router/routes-match";
+/**
+ * @name 导入动态添加路由方法
+ */
+import {
+    initDynamicRoutes
+} from './router/index'
 
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 let router = null;
@@ -28,10 +35,10 @@ const lifeCycle = () => {
          * @description 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等
          */
         async bootstrap(props) {
-            console.log('props:', props)
-            /* props.emits.forEach(i => {
-              Vue.prototype[`$${i.name}`] = i;
-            }); */
+            // console.log('props:', props)
+            // props.emits.forEach(i => {
+            //   Vue.prototype[`$${i.name}`] = i;
+            // });
         },
         /**
          * @name 实例化微应用
@@ -40,10 +47,13 @@ const lifeCycle = () => {
          */
         async mount(props) {
             console.log('props:', props)
+            // 动态添加路由
+            initDynamicRoutes()
             // 注册应用间通信
             appStore(props);
             // 注册微应用实例化函数
             render(props);
+            store.dispatch('setAppRouter', router)
         },
         /**
          * @name 微应用卸载/切出
@@ -59,7 +69,7 @@ const lifeCycle = () => {
          * @description 可选生命周期钩子，仅使用 loadMicroApp 方式手动加载微应用时生效
          */
         async update(props) {
-            console.log("update props", props);
+            // console.log("update props", props);
         }
     };
 };
@@ -82,15 +92,17 @@ const render = ({
         mode: "history",
         routes: __qiankun__ ? routeMatch(routes, routerBase) : selfRoutes,
     });
-
+    console.log(router)
     instance = new Vue({
         router,
         store,
         render: h => h(App)
     }).$mount(container ? container.querySelector('#subapp-job') : '#subapp-job');
+    // return router
 };
 
 export {
     lifeCycle,
-    render
+    render,
+    // callback
 };

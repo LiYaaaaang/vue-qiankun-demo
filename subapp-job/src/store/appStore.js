@@ -1,27 +1,38 @@
 //types
 const types = {
-    APP_MSG: 'APP_MSG',
+    APP_CURRENT_MSG: 'APP_CURRENT_MSG',
+    APP_PREV_MSG: 'APP_PREV_MSG',
 }
 //state
 const state = {
-    appMsg: '',
+    appCurrentMsg: '',
+    appPrevMsg: '',
 }
 //getters
 const getters = {
-    appMsg: state => state.appMsg,
+    appCurrentMsg: state => state.appCurrentMsg,
+    appPrevMsg: state => state.appPrevMsg,
 }
 //mutations
 const mutations = {
-    [types.APP_MSG](state, data) {
-        state.appMsg = data
+    [types.APP_CURRENT_MSG](state, currentMsg) {
+        state.appCurrentMsg = currentMsg
+    },
+    [types.APP_PREV_MSG](state, prevMsg) {
+        state.appPrevMsg = prevMsg
     }
 }
 //actions
 const actions = {
-    setAppMsg: ({
+    setAppCurrentMsg: ({
         commit
-    }, data) => {
-        commit(types.APP_MSG, data)
+    }, currentMsg) => {
+        commit(types.APP_CURRENT_MSG, currentMsg)
+    },
+    setAppPrevMsg: ({
+        commit
+    }, prevMsg) => {
+        commit(types.APP_PREV_MSG, prevMsg)
     },
 }
 export default {

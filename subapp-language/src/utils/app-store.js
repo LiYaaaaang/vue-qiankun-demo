@@ -18,9 +18,10 @@ const appStore = props => {
   props.onGlobalStateChange(
     (state, prev) => {
       console.log(`[onGlobalStateChange - ${props.name}]:`, state, prev)
-      store.dispatch('setAppMsg', state.msg)
+      store.dispatch('setAppCurrentMsg', state.msg)
+      store.dispatch('setAppPrevMsg', prev.msg)
     },
-    // true
+    true
   );
   /**
    * @name 改变并全局广播新消息

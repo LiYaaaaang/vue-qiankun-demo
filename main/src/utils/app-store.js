@@ -1,9 +1,5 @@
 import store from "../store/index";
 /**
- * @name 导入注册并启动微应用函数
- */
-
-/**
  * @name 启动qiankun应用间通信机制
  * @param {Function} initGlobalState 官方通信函数
  * @description 注意：主应用是从qiankun中导出的initGlobalState方法，
@@ -30,7 +26,8 @@ const appStore = (initGlobalState) => {
    */
   onGlobalStateChange((state, prev) => {
     console.log('[onGlobalStateChange - master]:', state, prev);
-    'msg' in state && store.dispatch('setAppMsg', state.msg);
+    'msg' in state && store.dispatch('setAppCurrentMsg', state.msg);
+    'msg' in prev && store.dispatch('setAppPrevMsg', prev.msg);
     // value.token && store.dispatch('app/setToken', value.token);
     // value.appsRefresh && window.location.reload();
   });

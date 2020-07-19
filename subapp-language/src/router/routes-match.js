@@ -23,7 +23,7 @@ function routeMatch(
    * @name 路由映射真实视图路径
    */
   function routerMapFile(data) {
-    // console.log(data)
+    console.log(data)
     data.forEach(item => {
       console.log(item)
       if (item[options.url]) {
@@ -60,14 +60,13 @@ function routeMatch(
   }
 
   /**
-   * @error A non-empty path must start with "/"
-   * @des 添加错误路径重定向至404报错，需要以'/'开头
+   * @des 添加错误路径，'*'通配符
    */
-  /* let errorBox = {
+  let errorBox = {
     path: "*",
-    redirect: "/err-404"
+    component: () => import(`@/views/NotFound.vue`)
   };
-  routerBox.push(errorBox); */
+  routerBox.push(errorBox);
   console.log(routerBox)
   return routerBox;
 }

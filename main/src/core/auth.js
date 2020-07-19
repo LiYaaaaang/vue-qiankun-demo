@@ -2,7 +2,6 @@
  * @name 此文件处理登陆身份鉴权
  */
 
-
 import store from '../store/index'
 import http from '../api/http'
 /**
@@ -25,6 +24,7 @@ const getAppConfigs = () => {
         /**
          * @name 启用qiankun微前端应用，已启动过用手动加载，未启动过正常注册
          */
+        // console.log(appList)
         qianKunStart(appList);
     })
 }
